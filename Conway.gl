@@ -1,0 +1,124 @@
+using Image
+using UI
+var canvas = UI.create("canvas")
+schema Cell begin
+   var x:Int32
+   var y:Int32
+   var active:Int32
+end
+var last = {
+   x=0
+   y=0
+   active = 0
+}
+var world =
+   [
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+   ]
+
+function Render() begin
+   canvas.setFillStyle("#000000")
+   canvas.fillRect(0, 0, 256, 256)
+   canvas.setFillStyle("#ffffff")
+   for x = 0 to 16 begin
+      for y = 0 to 16 begin
+         if(world[x][y] == 1) then
+            canvas.fillRect(x * 16, y * 16, 16, 16)
+            print("Alive")
+         end
+      end
+   end
+end
+function Randomize() begin
+   for x = 0 to 16 begin
+      for y = 0 to 16 begin
+         var r = random() * 100
+         if(r < 50) then
+            world[x][y] = 1
+         end
+         if(r >= 50) then
+            world[x][y] = 0
+         end
+      end
+   end
+   Render()
+end
+
+function Update () begin
+   var next =
+      [
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+         [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+      ]
+   for x = 1 to 15 begin
+      for y = 1 to 15 begin
+         var count = world[x - 1][y - 1] + world[x - 1][y] + world[x - 1][y + 1] + world[x][y - 1] + world[x][y + 1] + world[x + 1][y - 1] + world[x + 1][y] + world[x + 1][y + 1]
+         
+         if (world[x][y] == 1) then
+            next[x][y] = 1
+            if(count < 2) then
+               next[x][y] = 0
+            end
+            if(count > 3) then
+               next[x][y] = 0
+            end
+         end
+         if (world[x][y] == 0) then
+            if(count == 3) then
+               next[x][y] = 1
+            end
+         end
+      end
+   end
+   world = next
+   print("Update")
+   Render()
+end
+function Place() begin
+   var desc = UI.dialog(Cell, last)
+   if (!desc) then return 0 end
+   last = desc
+   world[desc.x][desc.y] = desc.active
+   print("Place")
+   Render()
+end
+
+print("Conway 1.01")
+
+UI.addCommand("Update", Update)
+UI.addCommand("Place", Place)
+UI.addCommand("Randomize", Randomize)
+UI.addCommand("Close", fn () begin UI.stop() end)
+
+UI.show(canvas)
+UI.run()
+
