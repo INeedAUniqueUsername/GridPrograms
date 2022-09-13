@@ -8,12 +8,12 @@
 - `Array.make(start: int, end: int, step: int) -> Array`
 - `Array.make(start: int, end: int, fn: Function(i: int)) -> Array`
 - `Array.make(start: int, end: int, step: int, fn: Function(i: int)) -> Array`
-- `Array.map(array: Array, fn: Function(element: Any), [options: Struct(???)], [progressFn: ???]) -> Mapped array`
-- `Array.reduce(array: Array, fn: Function(element: Any), [[initial-value: Any], [options: Struct(???)], [progressFn: Function(???)]]) -> Result`
+- `Array.map(array: Array, fn: Function(element: Any), [options: { ??? }], [progressFn: ???]) -> Mapped array`
+- `Array.reduce(array: Array, fn: Function(element: Any), [[initial-value: Any], [options: { ??? }], [progressFn: Function(???)]]) -> Result`
 - `Console.clear()`
 - `input() -> str`
 - `input(prompt: str) -> str`
-- `input(options: Struct(prompt: str, noEcho: bool)) -> str`
+- `input(options: { prompt: str, noEcho: bool }) -> str`
 - `print(data: Any...) -> True`
 - `DateTime(day: int, month: int, year: int) -> DateTime`
 - `DateTime(day: int, month: int, year: int, hour: int, minute: int, second: int, millisecond: int) -> DateTime`
@@ -47,21 +47,26 @@
 - `Table.insertColumns(table: Table, name: str, type, values, index) -> Column`
 - `Table.map(table: Table, struct: Struct, options = None, progressFn = None) -> Table`
 ## static fields
-- `System: Struct(apiVersion: int, args: Array[str], programID: str, runID: int, user: Struct, username: str)`
+- `System: { apiVersion: int, args: Array[str], programID: str, runID: int, user: Struct, username: str }`
 
 ## Array members
 - `filter(fn: Function(element: Any)) -> Array`
 
-## `Table` members
+## Table members
 - `filter(by: Function(row: Row)) -> Table`
 - `getAt(key: str) -> Row`
 - `getAt(key: str, col: str) -> Any`
 - `getColumn(col: str) -> Column`
 - `groupBy(col: str) -> Array[Table]`
 - `setAt(key: str, row: Row | partialRow: Row) -> row`
-# Graph
+
+# Code
 ## static methods
-- `Graph.create(type: Type, data, options) -> Graph`
+- `getDocumentation(library: str)`
+  - `library`: one of `*`, `Code`, `Data`, `File`, `Graph`, `GridLang`
+- `getNodeStatus`
+- `getUIView`
+- `getVMInfo`
 # Data
 ## static methods
 - `Data.open(name, dataType, options) -> handle`
@@ -73,10 +78,14 @@
 - `File.read(path, [options]) -> data`
 - `File.resolvePath(path) -> pathID`
 - `File.write(path, data, [options]) -> data`
-# Code
+# Graph
 ## static methods
-- `getDocumentation(library: str)`
-  - `library`: one of `*`, `Code`, `Data`, `File`, `Graph`, `GridLang`
-- `getNodeStatus`
-- `getUIView`
-- `getVMInfo`
+- `Graph.create(type: str, data, options: Array[Series] | { renderType: str, series: Array[Series] | Series }) -> Graph`
+  - `type`: one of `line`, `XY`
+  - `options.renderType`: one of `graphDesc`
+  - `Series: { xAxis: { data: Array }, yAxis: { data: Array }, color: { data: Array }, lineConnection: { lineBy, orderBy, color, size }, style: { data }, size: { data } }`
+# HTTP
+# Image
+# Math
+# UI
+# User
