@@ -1,15 +1,15 @@
 # GridLang (built-in)
 ## static methods
-- `Array(count) -> Array`
-- `Array.append(array, element) -> int`
+- `Array(count: int) -> Array`
+- `Array.append(array: Array, element: Any) -> int`
 - `Array.make(n: int) -> Array`
 - `Array.make(n: int, fn: Function(i: int)) -> Array`
 - `Array.make(start: int, end: int) -> Array`
 - `Array.make(start: int, end: int, step: int) -> Array`
 - `Array.make(start: int, end: int, fn: Function(i: int)) -> Array`
 - `Array.make(start: int, end: int, step: int, fn: Function(i: int)) -> Array`
-- `Array.map(array, fn, [options], [progressFn: ???) -> Mapped array`
-- `Array.reduce(array, fn, [[initial-value], [options], [progressFn]]) -> Result`
+- `Array.map(array: Array, fn: Function(element: Any), [options: Struct(???)], [progressFn: ???]) -> Mapped array`
+- `Array.reduce(array: Array, fn: Function(element: Any), [[initial-value: Any], [options: Struct(???)], [progressFn: Function(???)]]) -> Result`
 - `Console.clear()`
 - `input() -> str`
 - `input(prompt: str) -> str`
