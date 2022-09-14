@@ -62,6 +62,7 @@
 - `groupBy(col: str) -> Array[Table]`
 - `setAt(key: str, row: Row | partialRow: Row) -> row`
 
+----
 # Code namespace
 ## static methods
 - `Code.getDocumentation(library: str)`
@@ -69,10 +70,14 @@
 - `Code.getNodeStatus`
 - `Code.getUIView`
 - `Code.getVMInfo`
+
+----
 # Data namespace
 ## static methods
 - `Data.open(name, dataType, options) -> handle`
 - `Data.resolvePath(name, dataType, options) -> gridID`
+
+----
 # File namespace
 ## static methods
 - `File.canAccess(path, accessType) -> true/null`
@@ -80,44 +85,52 @@
 - `File.read(path, [options]) -> data`
 - `File.resolvePath(path) -> pathID`
 - `File.write(path, data, [options]) -> data`
+
+----
 # Graph namespace
 ## static methods
 - `Graph.create(type: str, data, options: Array[Series] | { renderType: str, series: Array[Series] | Series }) -> Graph`
   - `type`: one of `line`, `XY`
   - `options.renderType`: one of `graphDesc`
   - `Series: { xAxis: { data: Array }, yAxis: { data: Array }, color: { data: Array }, lineConnection: { lineBy, orderBy, color, size }, style: { data }, size: { data } }`
-# HTTP namespace
--`HTTP.get(url, [headers, [options]]) -> data`
--`JSON.read(jsonString) -> value`
--`JSON.write(value) -> jsonString`
 
+----
+# HTTP namespace
+- `HTTP.get(url, [headers, [options]]) -> data`
+- `JSON.read(jsonString) -> value`
+- `JSON.write(value) -> jsonString`
+
+----
 # Image namespace
 ## static methods
--`Image.mandelbrot(x: float, y: float, pixelSize: float, width: int, height: int, options: { cores: int } = ???, progressFn: Function(progress: { ??? }) = None) -> image`
+- `Image.mandelbrot(x: float, y: float, pixelSize: float, width: int, height: int, options: { cores: int } = ???, progressFn: Function(progress: { ??? }) = None) -> image`
+
+----
 # Math namespace
 ## static methods
--`acos(x: float) -> float`
--`asin(x: float) -> float`
--`atan(x: float) -> float`
--`atan(y: float, x: float) -> float`	
--`average(x: float...) -> float	`
--`ceil(x: float) -> float`
--`cos(x: float) -> float`
--`divmod(x: float, y: float) -> [quotient: float, remainder: float]`
--`exp(x: float) -> float`
--`floor(x: float) -> float`
--`log(x: float, base: float = 10) -> float`
--`median(x: float...) -> float`
--`sin(x: float) -> float`
--`sqrt(x: float) -> float`
--`sum(x: float...) -> float`
--`tan(x: float) -> float`
--`Vector() -> Vector`
--`Vector(3) -> Vector`
--`e: float`
--`pi: float`
--`tau: float`
+- `acos(x: float) -> float`
+- `asin(x: float) -> float`
+- `atan(x: float) -> float`
+- `atan(y: float, x: float) -> float`	
+- `average(x: float...) -> float	`
+- `ceil(x: float) -> float`
+- `cos(x: float) -> float`
+- `divmod(x: float, y: float) -> [quotient: float, remainder: float]`
+- `exp(x: float) -> float`
+- `floor(x: float) -> float`
+- `log(x: float, base: float = 10) -> float`
+- `median(x: float...) -> float`
+- `sin(x: float) -> float`
+- `sqrt(x: float) -> float`
+- `sum(x: float...) -> float`
+- `tan(x: float) -> float`
+- `Vector() -> Vector`
+- `Vector(3) -> Vector`
+- `e: float`
+- `pi: float`
+- `tau: float`
 
+----
 # UI namespace
 ## static methods
 - `Bitmap(width, height, [backgroundColor]) -> bitmap`
@@ -193,9 +206,10 @@
 - `width: int`
 - `height: int`
 
+----
 # User namespace
 ## static methods
--`User.addToGroup(groupID, userID|groupID) -> bool | Error	`
--`User.createGroup(groupName) -> { ??? }`
--`User.getInfo(userID|groupID) -> { ??? }`
--`User.removeFromGroup(groupID, userID|groupID) -> bool | Error`
+- `User.addToGroup(groupID, userID|groupID) -> bool | Error	`
+- `User.createGroup(groupName) -> { ??? }`
+- `User.getInfo(userID|groupID) -> { ??? }`
+- `User.removeFromGroup(groupID, userID|groupID) -> bool | Error`
