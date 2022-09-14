@@ -46,13 +46,15 @@
 - `Table.insertColumns(table: Table, name: str, type, index) -> Column`
 - `Table.insertColumns(table: Table, name: str, type, values, index) -> Column`
 - `Table.map(table: Table, struct: Struct, options = None, progressFn = None) -> Table`
-## static fields
+## constants
 - `System: { apiVersion: int, args: Array[str], programID: str, runID: int, user: Struct, username: str }`
 
-## Array members
+## Array class
+### instance methods
 - `filter(fn: Function(element: Any)) -> Array`
 
-## Table members
+## Table class
+### instance methods
 - `filter(by: Function(row: Row)) -> Table`
 - `getAt(key: str) -> Row`
 - `getAt(key: str, col: str) -> Any`
@@ -62,11 +64,11 @@
 
 # Code
 ## static methods
-- `getDocumentation(library: str)`
+- `Code.getDocumentation(library: str)`
   - `library`: one of `*`, `Code`, `Data`, `File`, `Graph`, `GridLang`
-- `getNodeStatus`
-- `getUIView`
-- `getVMInfo`
+- `Code.getNodeStatus`
+- `Code.getUIView`
+- `Code.getVMInfo`
 # Data
 ## static methods
 - `Data.open(name, dataType, options) -> handle`
@@ -85,7 +87,113 @@
   - `options.renderType`: one of `graphDesc`
   - `Series: { xAxis: { data: Array }, yAxis: { data: Array }, color: { data: Array }, lineConnection: { lineBy, orderBy, color, size }, style: { data }, size: { data } }`
 # HTTP
+`HTTP.get(url, [headers, [options]]) -> data`
+`JSON.read(jsonString) -> value`
+`JSON.write(value) -> jsonString`
+
 # Image
+## static methods
+`Image.mandelbrot(x: float, y: float, pixelSize: float, width: int, height: int, options: { cores: int } = ???, progressFn: Function(progress: { ??? }) = None) -> image`
 # Math
+## static methods
+`acos(x: float) -> float`
+`asin(x: float) -> float`
+`atan(x: float) -> float`
+`atan(y: float, x: float) -> float`	
+`average(x: float...) -> float	`
+`ceil(x: float) -> float`
+`cos(x: float) -> float`
+`divmod(x: float, y: float) -> [quotient: float, remainder: float]`
+`exp(x: float) -> float`
+`floor(x: float) -> float`
+`log(x: float, base: float = 10) -> float`
+`median(x: float...) -> float`
+`sin(x: float) -> float`
+`sqrt(x: float) -> float`
+`sum(x: float...) -> float`
+`tan(x: float) -> float`
+`Vector() -> Vector`
+`Vector(3) -> Vector`
+`e: float`
+`pi: float`
+`tau: float`
+
 # UI
+## static methods
+- `Bitmap(width, height, [backgroundColor]) -> bitmap`
+- `Canvas(struct) -> canvas`
+- `UI.create(class: str, options: { ... } = None) -> control`
+  - `class`
+    - `"2DGraph" | "button" | "canvas" | "dial" | "edit" | "form" | "image" | "layoutGrid" | "listbox" | "markdown" | "table" | "text"
+  - `options`: Sets the fields on the control
+- `UI.addCommand(desc, func) -> command`
+- `UI.dialog(desc, initialValues, options) -> exitCode`
+- `UI.getDocumentation() -> table`
+- `UI.stop(exitCode) -> true/error`
+- `UI.run() -> exitCode`
+- `UI.setCommands(arrayOfCommands) -> true/null`
+- `UI.show(control)`
+
+## Control class
+### instance fields
+- `border: str | {}`
+  - `"boxed" | "default" | "narrow" | "page" | "raised" | "thinLine" | "thinLineWide" | "wide"`
+  - `{ top: str, left: str, right: str, bottom: str }`
+
+## Canvas class
+### instance methods
+- `arc(x: float, y: float, radius: float, startAngle: float, endAngle: float, counterClockwise: bool = False) -> bool`
+- `beginPath() -> bool`
+- `circle(x: float, y: float, radius: float) -> bool`
+- `clearRect() -> bool`
+- `clearRect(x: float, y: float, width: float, height: float) -> bool`
+- `closePath() -> bool`
+- `createSprite(desc: Image, options: { pos: Vector2, seq: int } = None) -> Sprite`
+- `drawImage(image: Image, x: float, y: float) -> bool`
+- `fill() -> bool`
+- `fillRect(x: float, y: float, width: float, height: float) -> bool`
+- `lineTo(x: float, y: float) -> bool`
+- `moveTo(x: float, y: float) -> bool`
+- `outline() -> bool`
+- `rect(x: float, y: float, width: float, height: float) -> bool`
+- `setResource(name: str, image: Image) -> bool`
+- `sprite_moveTo(spriteID: int, pos: Vector2) -> bool`
+- `renderHTMLCanvasCommands() -> bool`
+### instance fields
+- `fillStyle: Color`
+- `length: int = 1`
+- `lineStyle: Color`
+- `lineWidth: float = 1.0`
+
+- `onclick: Function(x: float, y: float)`
+- `onsize: Function(x: float, y: float)`
+
+## Bitmap class
+### static methods
+- `arc(x: float, y: float, radius: float, startAngle: float, endAngle: float, counterClockwise: bool = False) -> bool`
+- `beginPath() -> bool`
+- `circle(x: float, y: float, radius: float) -> bool`
+- `clearRect() -> bool`
+- `clearRect(x: float, y: float, width: float, height: float) -> bool`
+- `closePath() -> bool`
+- `drawImage(image: Image, x: float, y: float) -> bool`
+- `fill() -> bool`
+- `fillRect(x: float, y: float, width: float, height: float) -> bool`
+- `getScaled(width: float, height: float) -> Image`
+- `getSlice(x: float, y: float, width: float, height: float) -> Image`
+- `lineTo(x: float, y: float) -> bool`
+- `moveTo(x: float, y: float) -> bool`
+- `outline() -> bool`
+- `rect(x: float, y: float, width: float, height: float) -> bool`
+- `setFillStyle(style: str) -> bool`
+- `setLineStyle(style: str) -> bool`
+
+### instance fields
+- `width: int`
+- `height: int`
+
 # User
+`User.addToGroup(groupID, userID|groupID) -> bool | Error	`
+`User.createGroup(groupName) -> { ??? }`
+`User.getInfo(userID|groupID) -> { ??? }`
+`User.removeFromGroup(groupID, userID|groupID) -> bool | Error`
