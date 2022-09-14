@@ -87,36 +87,36 @@
   - `options.renderType`: one of `graphDesc`
   - `Series: { xAxis: { data: Array }, yAxis: { data: Array }, color: { data: Array }, lineConnection: { lineBy, orderBy, color, size }, style: { data }, size: { data } }`
 # HTTP
-`HTTP.get(url, [headers, [options]]) -> data`
-`JSON.read(jsonString) -> value`
-`JSON.write(value) -> jsonString`
+-`HTTP.get(url, [headers, [options]]) -> data`
+-`JSON.read(jsonString) -> value`
+-`JSON.write(value) -> jsonString`
 
 # Image
 ## static methods
-`Image.mandelbrot(x: float, y: float, pixelSize: float, width: int, height: int, options: { cores: int } = ???, progressFn: Function(progress: { ??? }) = None) -> image`
+-`Image.mandelbrot(x: float, y: float, pixelSize: float, width: int, height: int, options: { cores: int } = ???, progressFn: Function(progress: { ??? }) = None) -> image`
 # Math
 ## static methods
-`acos(x: float) -> float`
-`asin(x: float) -> float`
-`atan(x: float) -> float`
-`atan(y: float, x: float) -> float`	
-`average(x: float...) -> float	`
-`ceil(x: float) -> float`
-`cos(x: float) -> float`
-`divmod(x: float, y: float) -> [quotient: float, remainder: float]`
-`exp(x: float) -> float`
-`floor(x: float) -> float`
-`log(x: float, base: float = 10) -> float`
-`median(x: float...) -> float`
-`sin(x: float) -> float`
-`sqrt(x: float) -> float`
-`sum(x: float...) -> float`
-`tan(x: float) -> float`
-`Vector() -> Vector`
-`Vector(3) -> Vector`
-`e: float`
-`pi: float`
-`tau: float`
+-`acos(x: float) -> float`
+-`asin(x: float) -> float`
+-`atan(x: float) -> float`
+-`atan(y: float, x: float) -> float`	
+-`average(x: float...) -> float	`
+-`ceil(x: float) -> float`
+-`cos(x: float) -> float`
+-`divmod(x: float, y: float) -> [quotient: float, remainder: float]`
+-`exp(x: float) -> float`
+-`floor(x: float) -> float`
+-`log(x: float, base: float = 10) -> float`
+-`median(x: float...) -> float`
+-`sin(x: float) -> float`
+-`sqrt(x: float) -> float`
+-`sum(x: float...) -> float`
+-`tan(x: float) -> float`
+-`Vector() -> Vector`
+-`Vector(3) -> Vector`
+-`e: float`
+-`pi: float`
+-`tau: float`
 
 # UI
 ## static methods
@@ -124,7 +124,7 @@
 - `Canvas(struct) -> canvas`
 - `UI.create(class: str, options: { ... } = None) -> control`
   - `class`
-    - `"2DGraph" | "button" | "canvas" | "dial" | "edit" | "form" | "image" | "layoutGrid" | "listbox" | "markdown" | "table" | "text"
+    - `"2DGraph" | "button" | "canvas" | "dial" | "edit" | "form" | "image" | "layoutGrid" | "listbox" | "markdown" | "table" | "text"`
   - `options`: Sets the fields on the control
 - `UI.addCommand(desc, func) -> command`
 - `UI.dialog(desc, initialValues, options) -> exitCode`
@@ -136,10 +136,11 @@
 
 ## Control class
 ### instance fields
-- `border: str | {}`
+- `border`
   - `"boxed" | "default" | "narrow" | "page" | "raised" | "thinLine" | "thinLineWide" | "wide"`
   - `{ top: str, left: str, right: str, bottom: str }`
-
+- `class: str = "uiControl"`
+- `id: int`
 ## Canvas class
 ### instance methods
 - `arc(x: float, y: float, radius: float, startAngle: float, endAngle: float, counterClockwise: bool = False) -> bool`
@@ -193,7 +194,8 @@
 - `height: int`
 
 # User
-`User.addToGroup(groupID, userID|groupID) -> bool | Error	`
-`User.createGroup(groupName) -> { ??? }`
-`User.getInfo(userID|groupID) -> { ??? }`
-`User.removeFromGroup(groupID, userID|groupID) -> bool | Error`
+## static methods
+-`User.addToGroup(groupID, userID|groupID) -> bool | Error	`
+-`User.createGroup(groupName) -> { ??? }`
+-`User.getInfo(userID|groupID) -> { ??? }`
+-`User.removeFromGroup(groupID, userID|groupID) -> bool | Error`
