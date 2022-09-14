@@ -62,39 +62,39 @@
 - `groupBy(col: str) -> Array[Table]`
 - `setAt(key: str, row: Row | partialRow: Row) -> row`
 
-# Code
+# Code namespace
 ## static methods
 - `Code.getDocumentation(library: str)`
   - `library`: one of `*`, `Code`, `Data`, `File`, `Graph`, `GridLang`
 - `Code.getNodeStatus`
 - `Code.getUIView`
 - `Code.getVMInfo`
-# Data
+# Data namespace
 ## static methods
 - `Data.open(name, dataType, options) -> handle`
 - `Data.resolvePath(name, dataType, options) -> gridID`
-# File
+# File namespace
 ## static methods
 - `File.canAccess(path, accessType) -> true/null`
 - `File.directory(path, [options]) -> array of structs`
 - `File.read(path, [options]) -> data`
 - `File.resolvePath(path) -> pathID`
 - `File.write(path, data, [options]) -> data`
-# Graph
+# Graph namespace
 ## static methods
 - `Graph.create(type: str, data, options: Array[Series] | { renderType: str, series: Array[Series] | Series }) -> Graph`
   - `type`: one of `line`, `XY`
   - `options.renderType`: one of `graphDesc`
   - `Series: { xAxis: { data: Array }, yAxis: { data: Array }, color: { data: Array }, lineConnection: { lineBy, orderBy, color, size }, style: { data }, size: { data } }`
-# HTTP
+# HTTP namespace
 -`HTTP.get(url, [headers, [options]]) -> data`
 -`JSON.read(jsonString) -> value`
 -`JSON.write(value) -> jsonString`
 
-# Image
+# Image namespace
 ## static methods
 -`Image.mandelbrot(x: float, y: float, pixelSize: float, width: int, height: int, options: { cores: int } = ???, progressFn: Function(progress: { ??? }) = None) -> image`
-# Math
+# Math namespace
 ## static methods
 -`acos(x: float) -> float`
 -`asin(x: float) -> float`
@@ -118,7 +118,7 @@
 -`pi: float`
 -`tau: float`
 
-# UI
+# UI namespace
 ## static methods
 - `Bitmap(width, height, [backgroundColor]) -> bitmap`
 - `Canvas(struct) -> canvas`
@@ -193,7 +193,7 @@
 - `width: int`
 - `height: int`
 
-# User
+# User namespace
 ## static methods
 -`User.addToGroup(groupID, userID|groupID) -> bool | Error	`
 -`User.createGroup(groupName) -> { ??? }`
